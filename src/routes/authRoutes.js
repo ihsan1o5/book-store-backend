@@ -51,10 +51,11 @@ router.post("/register", async (req, res) => {
         res.status(201).json({
             message: "User registered successfully",
             user: {
-                _id: user._id,
+                id: user._id,
                 username: user.username,
                 email: user.email,
                 profileImage: user.profileImage,
+                createdAt: user.createdAt,
             },
             token,
         });
@@ -85,10 +86,11 @@ router.post("/login", async (req, res) => {
         res.status(200).json({
             message: "Login successful",
             user: {
-                _id: user._id,
+                id: user._id,
                 username: user.username,
                 email: user.email,
                 profileImage: user.profileImage,
+                createdAt: user.createdAt,
             },
             token,
         });
