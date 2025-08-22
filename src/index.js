@@ -9,6 +9,7 @@ import { connectDB } from './lib/db.js';
 // Routes
 import authRoutes from './routes/authRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +21,7 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
+app.use("/api/upload-signature", uploadRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port (${PORT})`);

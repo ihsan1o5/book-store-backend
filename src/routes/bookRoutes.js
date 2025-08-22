@@ -7,20 +7,17 @@ const router = express.Router();
 
 router.post('/', protectRoute, async (req, res) => {
     try {
-        const { title, caption, image, rating } = req.body;
+        const { title, caption, image, pdf, rating } = req.body;
 
-        if (!image || !title || !caption || !rating) return res.status(400).json({ message: 'Please provide all fields!' });
-
-        // upload image to cloudinary
-        const uploadResponse = await cloudinary.uploader.upload(image);
-        const imageUrl = uploadResponse.secure_url;
+        if (!image || !pdf || !title || !caption || !rating) return res.status(400).json({ message: 'Please provide all fields!' });
         
         // save to the database
         const newBook = new Book({
             title,
             caption,
             rating,
-            image: imageUrl,
+            image,
+            pdf,
             user: req.user._id,
         });
 

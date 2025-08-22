@@ -14,13 +14,11 @@ const protectRoute = async (req, res, next) => {
 
         // verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        console.log("Decoded token:", decoded);
         
 
         // find user
         const user = await User.findById(decoded.userId).select("-password");
-        console.log("User found:", user);
+
         if (!user) return res.status(401).json({ message: "Invalid Token!" });
         req.user = user;
 
