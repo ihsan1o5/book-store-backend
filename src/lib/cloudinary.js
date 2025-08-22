@@ -19,6 +19,8 @@ export const getSignedUploadParams = (folder = '') => {
         {
             timestamp,
             folder,
+            resource_type: "auto",
+            type: "upload"
         },
         process.env.CLOUDINARY_API_SECRET
     );
