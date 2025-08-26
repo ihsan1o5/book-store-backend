@@ -93,17 +93,6 @@ router.delete('/:id', protectRoute, async (req, res) => {
             }
         }
 
-        // Delete the book's pdf from cloudinary
-        if (book.pdf && book.pdf.includes('cloudinary')) {
-            try {
-                const publicId = book.pdf.split('/').pop().split('.')[0]; // Extract public ID from URL
-                await cloudinary.uploader.destroy(publicId);
-            } catch (deleteError) {
-                console.error('Error deleting pdf from Cloudinary:', deleteError);
-                // return res.status(500).json({ message: 'Failed to delete image from Cloudinary', error: deleteError.message });
-            }
-        }
-
         // Delete the book
         await book.deleteOne();
 
